@@ -46,6 +46,7 @@ type PackageMeta = {
 
 type NpmSearchPackage = {
   name: string;
+  scope: string;
   version: string;
   description?: string;
   keywords?: string[];
@@ -54,8 +55,11 @@ type NpmSearchPackage = {
     npm: string;
     homepage?: string;
     repository?: string;
+    bugs?: string;
   };
-  author?: { name: string; email?: string };
+  author?: { name: string; email?: string; url?: string };
+  publisher: { username: string; email: string };
+  maintainers: Array<{ username: string; email: string }>;
 };
 
 type NpmSearchResult = {
