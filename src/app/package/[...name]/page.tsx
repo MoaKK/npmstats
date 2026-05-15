@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { fetchAllDownloads, fetchPackageMeta } from "@/lib/npm-api";
 import { isValidPackageName, sanitizePackageName } from "@/lib/validators";
 import { PackageMetaCard } from "@/components/PackageMetaCard";
-import { StatsCarousel } from "@/components/StatsCarousel";
+import { StatsPanel } from "@/components/StatsPanel";
 
 type Props = {
   params: Promise<{ name: string[] }>;
@@ -43,14 +43,14 @@ async function PackagePage({ params }: Props) {
 
   return (
     <main className="mx-auto flex max-w-4xl flex-col gap-8 p-8">
-      <PackageMetaCard meta={meta} />
-      {stats ? (
-        <StatsCarousel stats={stats} />
+      <PackageMetaCard meta={ meta } />
+      { stats ? (
+        <StatsPanel stats={ stats } />
       ) : (
         <p className="text-sm text-muted-foreground">
           No download data available for this package.
         </p>
-      )}
+      ) }
     </main>
   );
 }
