@@ -1,9 +1,9 @@
 import { ImageResponse } from "next/og";
 
-const runtime = "edge";
-const alt = "npmstats";
-const size = { width: 1200, height: 630 };
-const contentType = "image/png";
+export const runtime = "edge";
+export const alt = "npmstats";
+export const size = { width: 1200, height: 630 };
+export const contentType = "image/png";
 
 function Image() {
   return new ImageResponse(
@@ -32,5 +32,5 @@ function Image() {
   );
 }
 
-export { runtime, alt, size, contentType };
 export default Image;
+
