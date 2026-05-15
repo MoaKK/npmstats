@@ -13,7 +13,7 @@ import type { ChartType } from "@/components/ChartTypeToggle";
 const chartConfig = {
   downloads: {
     label: "Downloads",
-    color: "hsl(var(--chart-1))",
+    color: "var(--foreground)",
   },
 } satisfies ChartConfig;
 
