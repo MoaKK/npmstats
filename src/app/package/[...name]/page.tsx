@@ -11,7 +11,7 @@ type Props = {
 
 async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { name } = await params;
-  const packageName = sanitizePackageName(name.join("/"));
+  const packageName = sanitizePackageName(name.map(decodeURIComponent).join("/"));
 
   if (!isValidPackageName(packageName)) {
     return { title: "Package not found" };
@@ -30,7 +30,7 @@ async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 async function PackagePage({ params }: Props) {
   const { name } = await params;
-  const packageName = sanitizePackageName(name.join("/"));
+  const packageName = sanitizePackageName(name.map(decodeURIComponent).join("/"));
 
   if (!isValidPackageName(packageName)) notFound();
 
