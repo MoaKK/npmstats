@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 function NotFound() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-6 p-8">
+    <main className="flex min-h-screen flex-col items-center gap-6 p-8">
       <Alert className="max-w-md">
         <AlertTitle>Package not found</AlertTitle>
         <AlertDescription>
