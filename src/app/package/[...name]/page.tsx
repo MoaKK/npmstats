@@ -43,7 +43,7 @@ async function PackagePage({ params }: Props) {
   if (!meta) notFound();
 
   return (
-    <main className="mx-auto flex max-w-4xl flex-col gap-8 p-8">
+    <main className="mx-auto flex max-w-4xl flex-col gap-4 p-4 sm:gap-8 sm:p-8">
       <BackButton className="flex-start w-20"/>
       <PackageMetaCard meta={ meta } />
       { stats ? (

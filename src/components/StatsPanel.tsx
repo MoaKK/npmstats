@@ -11,10 +11,10 @@ import type { PackageStats } from "@/types/npm";
 type PeriodKey = keyof PackageStats;
 
 const periods: { label: string; key: PeriodKey }[] = [
-  { label: "Day", key: "daily" },
-  { label: "Week", key: "weekly" },
-  { label: "Month", key: "monthly" },
-  { label: "Year", key: "yearly" },
+  { label: "Last day", key: "daily" },
+  { label: "Last week", key: "weekly" },
+  { label: "Last month", key: "monthly" },
+  { label: "Last year", key: "yearly" },
 ];
 
 type StatsPanelProps = {
@@ -30,15 +30,16 @@ function StatsPanel({ stats, packageName }: StatsPanelProps) {
   return (
     <Card>
       <CardHeader>
-        <div className="flex flex-wrap items-center justify-between gap-4">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
           <ToggleGroup
             type="single"
             variant="outline"
             value={period}
             onValueChange={(val) => val && setPeriod(val as PeriodKey)}
+            className="w-full flex-wrap justify-start sm:w-auto"
           >
             {periods.map(({ label, key }) => (
-              <ToggleGroupItem key={key} value={key}>
+              <ToggleGroupItem key={key} value={key} className="h-8 px-2 text-xs sm:h-9 sm:px-3 sm:text-sm">
                 {label}
               </ToggleGroupItem>
             ))}

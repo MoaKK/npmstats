@@ -15,7 +15,7 @@ function GlobalError({ error, reset }: ErrorProps) {
   }, [error]);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-6 p-8">
+    <main className="flex min-h-screen flex-col items-center gap-6 p-8">
       <Alert className="max-w-md" variant="destructive">
         <AlertTitle>Something went wrong</AlertTitle>
         <AlertDescription>

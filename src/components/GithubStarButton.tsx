@@ -28,14 +28,14 @@ async function GithubStarButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Star on GitHub (opens in new tab)"
-      className="flex items-center overflow-hidden rounded-md border text-sm font-medium transition-colors hover:bg-muted"
+      className="flex items-center overflow-hidden rounded-md border text-xs font-medium transition-colors hover:bg-muted sm:text-sm"
     >
-      <span className="flex items-center gap-1.5 border-r px-2.5 py-1">
-        <Image src="/github-icon.svg" alt="" width={16} height={16} className="dark:invert" />
+      <span className="flex items-center gap-1 border-r px-2 py-1 sm:gap-1.5 sm:px-2.5">
+        <Image src="/github-icon.svg" alt="" width={14} height={14} className="dark:invert sm:h-4 sm:w-4" />
         Star
       </span>
       {stars !== null && (
-        <span className="px-2.5 py-1 tabular-nums">
+        <span className="px-2 py-1 tabular-nums sm:px-2.5">
           {stars.toLocaleString()}
         </span>
       )}

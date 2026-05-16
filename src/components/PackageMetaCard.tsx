@@ -23,7 +23,7 @@ function PackageMetaCard({ meta }: PackageMetaCardProps) {
       <CardHeader>
         <div className="flex items-start justify-between gap-4">
           <div className="flex flex-col gap-2">
-            <CardTitle className="text-xl">{ meta.name }</CardTitle>
+            <CardTitle className="text-[clamp(1rem,4vw,1.25rem)] break-all">{ meta.name }</CardTitle>
             { authorName && <span>By { authorName }</span> }
             { meta.description && (
               <p className="text-sm text-muted-foreground">{ meta.description }</p>

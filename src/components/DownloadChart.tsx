@@ -64,7 +64,7 @@ function DownloadChart({ data, chartType, ariaLabel }: DownloadChartProps) {
         tick={{ fontSize: 12 }}
         width={48}
       />
-      <ChartTooltip content={<ChartTooltipContent />} />
+      <ChartTooltip content={<ChartTooltipContent className="min-w-48" />} />
     </>
   );
 

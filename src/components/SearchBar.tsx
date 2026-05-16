@@ -43,8 +43,8 @@ function SearchBar() {
         onValueChange={(val) => val && setMode(val as SearchMode)}
         className="self-start"
       >
-        <ToggleGroupItem value="package">Package</ToggleGroupItem>
-        <ToggleGroupItem value="user">User</ToggleGroupItem>
+        <ToggleGroupItem value="package" className="h-8 px-2 text-xs sm:h-9 sm:px-3 sm:text-sm">Package</ToggleGroupItem>
+        <ToggleGroupItem value="user" className="h-8 px-2 text-xs sm:h-9 sm:px-3 sm:text-sm">User</ToggleGroupItem>
       </ToggleGroup>
       <form.Field name="query">
         {(field) => {

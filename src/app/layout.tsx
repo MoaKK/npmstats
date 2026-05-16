@@ -16,7 +16,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
     <html lang="en" suppressHydrationWarning>
       <body className="antialiased">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-          <header className="flex items-center border-b px-6 py-3">
+          <header className="flex items-center border-b px-4 py-3 sm:px-6">
             <div className="flex flex-1">
               <Link href="/" className="font-semibold">npmstats</Link>
             </div>
