@@ -4,6 +4,7 @@ import { fetchAllDownloads, fetchPackageMeta } from "@/lib/npm-api";
 import { isValidPackageName, sanitizePackageName } from "@/lib/validators";
 import { PackageMetaCard } from "@/components/PackageMetaCard";
 import { StatsPanel } from "@/components/StatsPanel";
+import { BackButton } from "@/components/BackButton";
 
 type Props = {
   params: Promise<{ name: string[] }>;
@@ -43,6 +44,7 @@ async function PackagePage({ params }: Props) {
 
   return (
     <main className="mx-auto flex max-w-4xl flex-col gap-8 p-8">
+      <BackButton className="flex-start w-20"/>
       <PackageMetaCard meta={ meta } />
       { stats ? (
         <StatsPanel stats={ stats } />

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { fetchUserPackages } from "@/lib/npm-api";
 import { isValidUsername, sanitizeUsername } from "@/lib/validators";
 import { PackageList } from "@/components/PackageList";
+import { BackButton } from "@/components/BackButton";
 
 type Props = {
   params: Promise<{ username: string }>;
@@ -28,6 +29,7 @@ async function UserPage({ params }: Props) {
 
   return (
     <main className="mx-auto flex max-w-4xl flex-col gap-8 p-8">
+      <BackButton className="flex-start w-20"/>
       <div className="flex flex-col gap-1">
         <h1 className="text-2xl font-bold">{sanitized}</h1>
         <p className="text-sm text-muted-foreground">

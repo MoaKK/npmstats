@@ -22,59 +22,57 @@ function PackageMetaCard({ meta }: PackageMetaCardProps) {
     <Card>
       <CardHeader>
         <div className="flex items-start justify-between gap-4">
-          <div className="flex flex-col gap-1">
-            <CardTitle className="text-xl">{meta.name}</CardTitle>
-            {meta.description && (
-              <p className="text-sm text-muted-foreground">{meta.description}</p>
-            )}
+          <div className="flex flex-col gap-2">
+            <CardTitle className="text-xl">{ meta.name }</CardTitle>
+            { authorName && <span>By { authorName }</span> }
+            { meta.description && (
+              <p className="text-sm text-muted-foreground">{ meta.description }</p>
+            ) }
           </div>
-          <Badge variant="secondary">v{latestVersion}</Badge>
+          <Badge variant="secondary">v{ latestVersion }</Badge>
         </div>
       </CardHeader>
       <CardContent className="flex flex-col gap-3">
-        <div className="flex flex-wrap gap-2 text-sm text-muted-foreground">
-          {authorName && <span>by {authorName}</span>}
-          {meta.license && <span>{meta.license}</span>}
-        </div>
-        <div className="flex flex-wrap gap-2">
+        { meta.license && <span>{ meta.license }</span> }
+        <div className="flex flex-wrap flex-col gap-2">
           <Link
-            href={npmUrl}
+            href={ npmUrl }
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm underline underline-offset-4"
           >
-            npm
+            npmUrl
           </Link>
-          {meta.homepage && (
+          { meta.homepage && (
             <Link
-              href={meta.homepage}
+              href={ meta.homepage }
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm underline underline-offset-4"
             >
               homepage
             </Link>
-          )}
-          {meta.repository?.url && (
+          ) }
+          { meta.repository?.url && (
             <Link
-              href={meta.repository.url.replace(/^git\+/, "").replace(/\.git$/, "")}
+              href={ meta.repository.url.replace(/^git\+/, "").replace(/\.git$/, "") }
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm underline underline-offset-4"
             >
               repository
             </Link>
-          )}
+          ) }
         </div>
-        {meta.keywords && meta.keywords.length > 0 && (
+        { meta.keywords && meta.keywords.length > 0 && (
           <div className="flex flex-wrap gap-1">
-            {meta.keywords.slice(0, 8).map((kw) => (
-              <Badge key={kw} variant="outline" className="text-xs">
-                {kw}
+            { meta.keywords.slice(0, 8).map((kw) => (
+              <Badge key={ kw } variant="outline" className="text-xs">
+                { kw }
               </Badge>
-            ))}
+            )) }
           </div>
-        )}
+        ) }
       </CardContent>
     </Card>
   );
