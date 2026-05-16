@@ -19,11 +19,13 @@ const periods: { label: string; key: PeriodKey }[] = [
 
 type StatsPanelProps = {
   stats: PackageStats;
+  packageName: string;
 };
 
-function StatsPanel({ stats }: StatsPanelProps) {
-  const [period, setPeriod] = useState<PeriodKey>("monthly");
+function StatsPanel({ stats, packageName }: StatsPanelProps) {
+  const [period, setPeriod] = useState<PeriodKey>("weekly");
   const [chartType, setChartType] = useState<ChartType>("bar");
+  const currentPeriodLabel = periods.find((p) => p.key === period)?.label ?? period;
 
   return (
     <Card>
@@ -31,6 +33,7 @@ function StatsPanel({ stats }: StatsPanelProps) {
         <div className="flex flex-wrap items-center justify-between gap-4">
           <ToggleGroup
             type="single"
+            variant="outline"
             value={period}
             onValueChange={(val) => val && setPeriod(val as PeriodKey)}
           >
@@ -44,7 +47,11 @@ function StatsPanel({ stats }: StatsPanelProps) {
         </div>
       </CardHeader>
       <CardContent>
-        <DownloadChart data={stats[period]} chartType={chartType} />
+        <DownloadChart
+          data={stats[period]}
+          chartType={chartType}
+          ariaLabel={`${packageName} downloads, last ${currentPeriodLabel.toLowerCase()}`}
+        />
       </CardContent>
     </Card>
   );

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import "./globals.css";
@@ -25,7 +26,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           <header className="flex items-center justify-between border-b px-6 py-3">
-            <span className="font-semibold">npmstats</span>
+            <Link href="/" className="font-semibold">npmstats</Link>
             <ThemeToggle />
           </header>
           {children}

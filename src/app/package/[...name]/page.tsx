@@ -47,7 +47,7 @@ async function PackagePage({ params }: Props) {
       <BackButton className="flex-start w-20"/>
       <PackageMetaCard meta={ meta } />
       { stats ? (
-        <StatsPanel stats={ stats } />
+        <StatsPanel stats={ stats } packageName={ packageName } />
       ) : (
         <p className="text-sm text-muted-foreground">
           No download data available for this package.

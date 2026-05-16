@@ -24,6 +24,7 @@ function SearchBar() {
     <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-full max-w-xl">
       <ToggleGroup
         type="single"
+        variant="outline"
         value={mode}
         onValueChange={(val) => val && setMode(val as SearchMode)}
         className="self-start"
@@ -34,9 +35,10 @@ function SearchBar() {
       <div className="flex gap-2">
         <Input
           value={query}
+          
           onChange={(e) => setQuery(e.target.value)}
           placeholder={
-            mode === "package" ? "e.g. react or @scope/package" : "e.g. sindresorhus"
+            mode === "package" ? "e.g. react or @moakk/killport-cli" : "e.g. moakk"
           }
           className="flex-1"
         />

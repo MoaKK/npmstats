@@ -13,6 +13,7 @@ function ChartTypeToggle({ value, onChange }: ChartTypeToggleProps) {
   return (
     <ToggleGroup
       type="single"
+      variant="outline"
       value={value}
       onValueChange={(val) => val && onChange(val as ChartType)}
     >

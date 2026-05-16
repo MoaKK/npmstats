@@ -13,7 +13,7 @@ import type { ChartType } from "@/components/ChartTypeToggle";
 const chartConfig = {
   downloads: {
     label: "Downloads",
-    color: "var(--foreground)",
+    color: "oklch(0.8691 0.2911 141.81)",
   },
 } satisfies ChartConfig;
 
@@ -30,9 +30,10 @@ function formatNumber(n: number) {
 type DownloadChartProps = {
   data: DownloadRange;
   chartType: ChartType;
+  ariaLabel?: string;
 };
 
-function DownloadChart({ data, chartType }: DownloadChartProps) {
+function DownloadChart({ data, chartType, ariaLabel }: DownloadChartProps) {
   const chartData = data.downloads.map((d) => ({
     day: formatDay(d.day),
     downloads: d.downloads,
@@ -68,7 +69,7 @@ function DownloadChart({ data, chartType }: DownloadChartProps) {
   );
 
   return (
-    <ChartContainer config={chartConfig} className="h-64 w-full">
+    <ChartContainer config={chartConfig} className="h-64 w-full" aria-label={ariaLabel}>
       {chartType === "bar" ? (
         <BarChart {...sharedProps}>
           {axes}

@@ -20,11 +20,11 @@ function PackageList({ packages, username }: PackageListProps) {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {packages.map((pkg) => (
-        <Link key={pkg.name} href={`/package/${pkg.name}`}>
+        <Link key={pkg.name} href={`/package/${pkg.name}`} aria-label={`View stats for ${pkg.name}`}>
           <Card className="h-full transition-colors hover:bg-muted/50">
             <CardHeader className="pb-2">
               <div className="flex items-start justify-between gap-2">
-                <CardTitle className="text-sm font-medium">{pkg.name}</CardTitle>
+                <CardTitle className="text-lg font-medium">{pkg.name}</CardTitle>
                 <Badge variant="secondary" className="shrink-0 text-xs">
                   v{pkg.version}
                 </Badge>
@@ -32,7 +32,7 @@ function PackageList({ packages, username }: PackageListProps) {
             </CardHeader>
             {pkg.description && (
               <CardContent>
-                <p className="line-clamp-2 text-xs text-muted-foreground">
+                <p className="line-clamp-2 text-sm text-muted-foreground">
                   {pkg.description}
                 </p>
               </CardContent>
