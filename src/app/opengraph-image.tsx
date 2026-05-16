@@ -24,7 +24,7 @@ function Image() {
           npmstats
         </div>
         <div style={{ color: "#71717a", fontSize: 28 }}>
-          Download stats for any npm package
+          Visualize download stats for any npm package
         </div>
       </div>
     ),
