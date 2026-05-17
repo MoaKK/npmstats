@@ -38,7 +38,7 @@ function PackageList({ packages, username }: PackageListProps) {
   return (
     <Item variant="outline" className="overflow-hidden">
       <ItemContent className="min-w-0">
-        <div className="mb-2 flex items-center justify-between border-b-1 py-3 gap-4">
+        <div className="mb-2 flex flex-wrap items-center justify-between gap-2 border-b py-3">
           <ItemTitle className="text-xl font-medium">
             { username ? `${username}'s p` : "P" }ackages
           </ItemTitle>
@@ -48,7 +48,7 @@ function PackageList({ packages, username }: PackageListProps) {
               placeholder="Search packages..."
               value={ query }
               onChange={ (e) => setQuery(e.target.value) }
-              className="h-8 w-48 text-sm"
+              className="h-8 w-full text-sm sm:w-48"
             />
           ) }
         </div>

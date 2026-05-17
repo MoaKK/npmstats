@@ -92,7 +92,7 @@ function DownloadChart({ data, chartType, ariaLabel }: DownloadChartProps) {
   );
 
   return (
-    <ChartContainer config={chartConfig} className="h-64 w-full" aria-label={ariaLabel}>
+    <ChartContainer config={chartConfig} className="h-64 w-full overflow-hidden" aria-label={ariaLabel}>
       {chartType === "bar" ? (
         <BarChart {...sharedProps}>
           {axes}
