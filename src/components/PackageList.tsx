@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Item, ItemContent, ItemTitle } from "@/components/ui/item";
 import { Input } from "@/components/ui/input";
 import type { NpmSearchPackage } from "@/types/npm";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 type PackageListProps = {
   packages: NpmSearchPackage[];
@@ -51,34 +52,36 @@ function PackageList({ packages, username }: PackageListProps) {
             />
           ) }
         </div>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          { filtered.map((pkg) => (
-            <Link key={ pkg.name } href={ `/package/${pkg.name}` } aria-label={ `View stats for ${pkg.name}` }>
-              <Card className="h-full transition-colors hover:bg-muted/50">
-                <CardHeader className="pb-2">
-                  <div className="flex items-start justify-between gap-2">
-                    <CardTitle className="text-lg font-medium">{ pkg.name }</CardTitle>
-                    <Badge variant="secondary" className="shrink-0 text-xs">
-                      v{ pkg.version }
-                    </Badge>
-                  </div>
-                </CardHeader>
-                { pkg.description && (
-                  <CardContent>
-                    <p className="line-clamp-2 text-sm text-muted-foreground">
-                      { pkg.description }
-                    </p>
-                  </CardContent>
-                ) }
-              </Card>
-            </Link>
-          )) }
-          { filtered.length === 0 && (
-            <p className="col-span-full text-sm text-muted-foreground">
-              No packages match &quot;{ query }&quot;.
-            </p>
-          ) }
-        </div>
+        <ScrollArea className="max-h-[600px] rounded-md overflow-y-auto">
+          <div className="grid grid-cols-1 gap-4 p-2 sm:grid-cols-2 lg:grid-cols-3">
+            { filtered.map((pkg) => (
+              <Link key={ pkg.name } href={ `/package/${pkg.name}` } aria-label={ `View stats for ${pkg.name}` }>
+                <Card className="h-full transition-colors hover:bg-muted/50">
+                  <CardHeader className="pb-2">
+                    <div className="flex items-start justify-between gap-2">
+                      <CardTitle className="text-lg font-medium">{ pkg.name }</CardTitle>
+                      <Badge variant="secondary" className="shrink-0 text-xs">
+                        v{ pkg.version }
+                      </Badge>
+                    </div>
+                  </CardHeader>
+                  { pkg.description && (
+                    <CardContent>
+                      <p className="line-clamp-2 text-sm text-muted-foreground">
+                        { pkg.description }
+                      </p>
+                    </CardContent>
+                  ) }
+                </Card>
+              </Link>
+            )) }
+            { filtered.length === 0 && (
+              <p className="col-span-full text-sm text-muted-foreground">
+                No packages match &quot;{ query }&quot;.
+              </p>
+            ) }
+          </div>
+        </ScrollArea>
       </ItemContent>
     </Item>
   );
