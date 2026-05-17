@@ -1,9 +1,11 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { BackButton } from "@/components/BackButton";
 
 function Loading() {
   return (
     <div className="mx-auto flex max-w-4xl flex-col gap-8 p-8">
+      <BackButton className="flex-start w-20" />
       <Card>
         <CardHeader>
           <div className="flex items-start justify-between gap-4">
