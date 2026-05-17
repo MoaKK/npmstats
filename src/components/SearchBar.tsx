@@ -1,47 +1,82 @@
 "use client";
 
 import { useState } from "react";
+import { useForm } from "@tanstack/react-form";
 import { useRouter } from "next/navigation";
+import { Search } from "lucide-react";
+import * as z from "zod";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { Field, FieldError } from "@/components/ui/field";
 
 type SearchMode = "package" | "user";
 
+const formSchema = z.object({
+  query: z.string().max(50).min(1, "Input field is empty!"),
+});
+
 function SearchBar() {
   const router = useRouter();
-  const [query, setQuery] = useState("");
   const [mode, setMode] = useState<SearchMode>("package");
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    const trimmed = query.trim();
-    if (!trimmed) return;
-    router.push(mode === "package" ? `/package/${trimmed}` : `/user/${trimmed}`);
-  }
+  const form = useForm({
+    defaultValues: { query: "" },
+    validators: { onSubmit: formSchema },
+    onSubmit: async ({ value }) => {
+      const trimmed = value.query.trim();
+      router.push(mode === "package" ? `/package/${trimmed}` : `/user/${trimmed}`);
+    },
+  });
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-full max-w-xl">
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        form.handleSubmit();
+      }}
+      className="flex flex-col gap-3 w-full max-w-xl"
+    >
       <ToggleGroup
         type="single"
+        variant="outline"
         value={mode}
         onValueChange={(val) => val && setMode(val as SearchMode)}
         className="self-start"
       >
-        <ToggleGroupItem value="package">Package</ToggleGroupItem>
-        <ToggleGroupItem value="user">User</ToggleGroupItem>
+        <ToggleGroupItem value="package" className="h-8 px-2 text-xs sm:h-9 sm:px-3 sm:text-sm">Package</ToggleGroupItem>
+        <ToggleGroupItem value="user" className="h-8 px-2 text-xs sm:h-9 sm:px-3 sm:text-sm">User</ToggleGroupItem>
       </ToggleGroup>
-      <div className="flex gap-2">
-        <Input
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder={
-            mode === "package" ? "e.g. react or @scope/package" : "e.g. sindresorhus"
-          }
-          className="flex-1"
-        />
-        <Button type="submit">Search</Button>
-      </div>
+      <form.Field name="query">
+        {(field) => {
+          const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid;
+          return (
+            <Field data-invalid={isInvalid}>
+              <div className="relative">
+                <Input
+                  id={field.name}
+                  name={field.name}
+                  value={field.state.value}
+                  onBlur={field.handleBlur}
+                  onChange={(e) => field.handleChange(e.target.value)}
+                  aria-invalid={isInvalid}
+                  placeholder={
+                    mode === "package" ? "e.g. react or @moakk/killport-cli" : "e.g. moakk"
+                  }
+                  className="pr-10"
+                />
+                <button
+                  type="submit"
+                  className="absolute right-0 top-0 h-full px-3 flex items-center text-muted-foreground hover:text-foreground transition-colors"
+                  aria-label="Search"
+                >
+                  <Search className="h-4 w-4" />
+                </button>
+              </div>
+              {isInvalid && <FieldError errors={field.state.meta.errors} />}
+            </Field>
+          );
+        }}
+      </form.Field>
     </form>
   );
 }
