@@ -55,7 +55,7 @@ function PackageList({ packages, username }: PackageListProps) {
         <ScrollArea className="max-h-[600px] rounded-md overflow-y-auto">
           <div className="grid grid-cols-1 gap-4 p-2 sm:grid-cols-2 lg:grid-cols-3">
             { filtered.map((pkg) => (
-              <Link key={ pkg.name } href={ `/package/${pkg.name}` } aria-label={ `View stats for ${pkg.name}` }>
+              <Link key={ pkg.name } href={ `/package/${pkg.name}` } title={ `View stats for ${pkg.name}` } aria-label={ `View stats for ${pkg.name}` }>
                 <Card className="h-full transition-colors hover:bg-muted/50">
                   <CardHeader className="pb-2">
                     <div className="flex items-start justify-between gap-2">

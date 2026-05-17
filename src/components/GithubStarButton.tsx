@@ -12,6 +12,7 @@ async function GithubStarButton() {
       href={repoUrl}
       target="_blank"
       rel="noopener noreferrer"
+      title="Star on GitHub (opens in new tab)"
       aria-label="Star on GitHub (opens in new tab)"
       className="flex items-center overflow-hidden rounded-md border text-xs font-medium transition-colors hover:bg-muted sm:text-sm"
     >

@@ -19,7 +19,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           <header className="sticky top-0 z-10 flex items-center border-b bg-background px-0 py-3 backdrop-blur-sm brightness-115 drop-shadow-xl/16 sm:px-6">
             <div className="flex flex-1">
-              <Link href="/" className="flex items-center font-semibold">
+              <Link href="/" title="Go to home" className="flex items-center font-semibold">
                 <Image src="/icon.png" alt="" width={54} height={52} />
                 npmstats
               </Link>

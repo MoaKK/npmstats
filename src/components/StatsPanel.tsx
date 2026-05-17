@@ -39,7 +39,7 @@ function StatsPanel({ stats, packageName }: StatsPanelProps) {
             className="w-full flex-wrap justify-start sm:w-auto"
           >
             {periods.map(({ label, key }) => (
-              <ToggleGroupItem key={key} value={key} className="h-8 px-2 text-xs sm:h-9 sm:px-3 sm:text-sm">
+              <ToggleGroupItem key={key} value={key} title={`Show ${label.toLowerCase()} downloads`} className="h-8 px-2 text-xs sm:h-9 sm:px-3 sm:text-sm">
                 {label}
               </ToggleGroupItem>
             ))}

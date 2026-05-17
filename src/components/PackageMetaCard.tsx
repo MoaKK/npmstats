@@ -39,6 +39,7 @@ function PackageMetaCard({ meta }: PackageMetaCardProps) {
             href={ npmUrl }
             target="_blank"
             rel="noopener noreferrer"
+            title={ `${meta.name} on npm (opens in new tab)` }
             aria-label={ `${meta.name} on npm (opens in new tab)` }
             className="text-sm underline underline-offset-4"
           >
@@ -49,6 +50,7 @@ function PackageMetaCard({ meta }: PackageMetaCardProps) {
               href={ meta.homepage }
               target="_blank"
               rel="noopener noreferrer"
+              title="Homepage (opens in new tab)"
               aria-label="Homepage (opens in new tab)"
               className="text-sm underline underline-offset-4"
             >
@@ -60,6 +62,7 @@ function PackageMetaCard({ meta }: PackageMetaCardProps) {
               href={ meta.repository.url.replace(/^git\+/, "").replace(/\.git$/, "") }
               target="_blank"
               rel="noopener noreferrer"
+              title="Repository (opens in new tab)"
               aria-label="Repository (opens in new tab)"
               className="text-sm underline underline-offset-4"
             >

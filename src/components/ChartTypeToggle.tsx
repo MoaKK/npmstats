@@ -17,8 +17,8 @@ function ChartTypeToggle({ value, onChange }: ChartTypeToggleProps) {
       value={value}
       onValueChange={(val) => val && onChange(val as ChartType)}
     >
-      <ToggleGroupItem value="bar" className="h-8 px-2 text-xs sm:h-9 sm:px-3 sm:text-sm">Bar</ToggleGroupItem>
-      <ToggleGroupItem value="line" className="h-8 px-2 text-xs sm:h-9 sm:px-3 sm:text-sm">Line</ToggleGroupItem>
+      <ToggleGroupItem value="bar" title="Bar chart" className="h-8 px-2 text-xs sm:h-9 sm:px-3 sm:text-sm">Bar</ToggleGroupItem>
+      <ToggleGroupItem value="line" title="Line chart" className="h-8 px-2 text-xs sm:h-9 sm:px-3 sm:text-sm">Line</ToggleGroupItem>
     </ToggleGroup>
   );
 }

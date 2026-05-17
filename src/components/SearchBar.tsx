@@ -43,8 +43,8 @@ function SearchBar() {
         onValueChange={(val) => val && setMode(val as SearchMode)}
         className="self-start"
       >
-        <ToggleGroupItem value="package" className="h-8 px-2 text-xs sm:h-9 sm:px-3 sm:text-sm">Package</ToggleGroupItem>
-        <ToggleGroupItem value="user" className="h-8 px-2 text-xs sm:h-9 sm:px-3 sm:text-sm">User</ToggleGroupItem>
+        <ToggleGroupItem value="package" title="Search by package name" className="h-8 px-2 text-xs sm:h-9 sm:px-3 sm:text-sm">Package</ToggleGroupItem>
+        <ToggleGroupItem value="user" title="Search by npm username" className="h-8 px-2 text-xs sm:h-9 sm:px-3 sm:text-sm">User</ToggleGroupItem>
       </ToggleGroup>
       <form.Field name="query">
         {(field) => {
@@ -66,6 +66,7 @@ function SearchBar() {
                 />
                 <button
                   type="submit"
+                  title="Search"
                   className="absolute right-0 top-0 h-full px-3 flex items-center text-muted-foreground hover:text-foreground transition-colors"
                   aria-label="Search"
                 >
