@@ -1,9 +1,12 @@
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { fetchUserPackages } from "@/lib/npm-api";
 import { isValidUsername, sanitizeUsername } from "@/lib/validators";
 import { PackageList } from "@/components/PackageList";
 import { BackButton } from "@/components/BackButton";
+import { UserDownloadsChart } from "@/components/UserDownloadsChart";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Item, ItemContent, ItemTitle, ItemDescription } from "@/components/ui/item";
 
 type Props = {
@@ -37,6 +40,13 @@ async function UserPage({ params }: Props) {
           <ItemDescription>
             {result.total} public {result.total === 1 ? "package" : "packages"}
           </ItemDescription>
+        </ItemContent>
+      </Item>
+      <Item variant="outline" className="overflow-hidden">
+        <ItemContent className="min-w-0">
+          <Suspense fallback={<Skeleton className="h-64 w-full" />}>
+            <UserDownloadsChart packages={result.objects.map((o) => o.package)} userName={sanitized} />
+          </Suspense>
         </ItemContent>
       </Item>
       <PackageList

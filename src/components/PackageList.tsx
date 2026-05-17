@@ -1,6 +1,11 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Item, ItemContent, ItemTitle } from "@/components/ui/item";
+import { Input } from "@/components/ui/input";
 import type { NpmSearchPackage } from "@/types/npm";
 
 type PackageListProps = {
@@ -9,38 +14,73 @@ type PackageListProps = {
 };
 
 function PackageList({ packages, username }: PackageListProps) {
+  const [query, setQuery] = useState("");
+
   if (packages.length === 0) {
     return (
-      <p className="text-sm text-muted-foreground">
-        No public packages found for {username}.
-      </p>
+      <Item>
+        <ItemContent>
+          <p className="text-sm text-muted-foreground">
+            No public packages found for { username }.
+          </p>
+        </ItemContent>
+      </Item>
     );
   }
 
+  const filtered = query
+    ? packages.filter((pkg) =>
+      pkg.name.toLowerCase().includes(query.toLowerCase())
+    )
+    : packages;
+
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {packages.map((pkg) => (
-        <Link key={pkg.name} href={`/package/${pkg.name}`} aria-label={`View stats for ${pkg.name}`}>
-          <Card className="h-full transition-colors hover:bg-muted/50">
-            <CardHeader className="pb-2">
-              <div className="flex items-start justify-between gap-2">
-                <CardTitle className="text-lg font-medium">{pkg.name}</CardTitle>
-                <Badge variant="secondary" className="shrink-0 text-xs">
-                  v{pkg.version}
-                </Badge>
-              </div>
-            </CardHeader>
-            {pkg.description && (
-              <CardContent>
-                <p className="line-clamp-2 text-sm text-muted-foreground">
-                  {pkg.description}
-                </p>
-              </CardContent>
-            )}
-          </Card>
-        </Link>
-      ))}
-    </div>
+    <Item variant="outline" className="overflow-hidden">
+      <ItemContent className="min-w-0">
+        <div className="mb-2 flex items-center justify-between border-b-1 py-3 gap-4">
+          <ItemTitle className="text-xl font-medium">
+            { username ? `${username}'s p` : "P" }ackages
+          </ItemTitle>
+          { packages.length > 10 && (
+            <Input
+              type="search"
+              placeholder="Search packages..."
+              value={ query }
+              onChange={ (e) => setQuery(e.target.value) }
+              className="h-8 w-48 text-sm"
+            />
+          ) }
+        </div>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          { filtered.map((pkg) => (
+            <Link key={ pkg.name } href={ `/package/${pkg.name}` } aria-label={ `View stats for ${pkg.name}` }>
+              <Card className="h-full transition-colors hover:bg-muted/50">
+                <CardHeader className="pb-2">
+                  <div className="flex items-start justify-between gap-2">
+                    <CardTitle className="text-lg font-medium">{ pkg.name }</CardTitle>
+                    <Badge variant="secondary" className="shrink-0 text-xs">
+                      v{ pkg.version }
+                    </Badge>
+                  </div>
+                </CardHeader>
+                { pkg.description && (
+                  <CardContent>
+                    <p className="line-clamp-2 text-sm text-muted-foreground">
+                      { pkg.description }
+                    </p>
+                  </CardContent>
+                ) }
+              </Card>
+            </Link>
+          )) }
+          { filtered.length === 0 && (
+            <p className="col-span-full text-sm text-muted-foreground">
+              No packages match &quot;{ query }&quot;.
+            </p>
+          ) }
+        </div>
+      </ItemContent>
+    </Item>
   );
 }
 
