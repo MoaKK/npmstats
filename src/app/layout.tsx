@@ -8,8 +8,8 @@ import { GithubStarButton } from "@/components/GithubStarButton";
 import "./globals.css";
 
 const metadata: Metadata = {
-  title: "npmstats",
-  description: "See download stats for any npm package",
+  title: "npmstats: see download statistics for any npm package",
+  description: "See download statistics for any npm package",
 };
 
 function RootLayout({ children }: { children: React.ReactNode }) {
