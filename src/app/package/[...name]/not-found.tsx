@@ -8,7 +8,7 @@ function NotFound() {
       <Alert className="max-w-md">
         <AlertTitle>Package not found</AlertTitle>
         <AlertDescription>
-          This package doesn't exist on npm or has no public data.
+          This package does not exist on npm or has no public data.
         </AlertDescription>
       </Alert>
       <Button asChild variant="outline">

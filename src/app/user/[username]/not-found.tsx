@@ -8,7 +8,7 @@ function NotFound() {
       <Alert className="max-w-md">
         <AlertTitle>User not found</AlertTitle>
         <AlertDescription>
-          This user doesn't exist on npm or hasn't published any public packages.
+          This user does not exist on npm or has not published any public packages.
         </AlertDescription>
       </Alert>
       <Button asChild variant="outline">

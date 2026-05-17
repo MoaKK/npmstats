@@ -1,6 +1,20 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useSyncExternalStore } from "react";
+
+function subscribe(callback: () => void) {
+  const mq = window.matchMedia("(max-width: 640px)");
+  mq.addEventListener("change", callback);
+  return () => mq.removeEventListener("change", callback);
+}
+
+function getMobileSnapshot() {
+  return window.matchMedia("(max-width: 640px)").matches;
+}
+
+function getServerSnapshot() {
+  return false;
+}
 import { BarChart, Bar, LineChart, Line, CartesianGrid, XAxis, YAxis } from "recharts";
 import {
   ChartContainer,
@@ -35,15 +49,7 @@ type DownloadChartProps = {
 };
 
 function DownloadChart({ data, chartType, ariaLabel }: DownloadChartProps) {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 640px)");
-    setIsMobile(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
+  const isMobile = useSyncExternalStore(subscribe, getMobileSnapshot, getServerSnapshot);
 
   const dataLength = data.downloads.length;
   const compactYearly = dataLength > 180 && isMobile;
