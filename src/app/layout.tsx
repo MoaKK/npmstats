@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { GithubStarButton } from "@/components/GithubStarButton";
@@ -16,9 +17,12 @@ function RootLayout({ children }: { children: React.ReactNode }) {
     <html lang="en" suppressHydrationWarning>
       <body className="antialiased">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-          <header className="flex items-center border-b px-4 py-3 sm:px-6">
+          <header className="flex items-center border-b px-0 py-3 sm:px-6">
             <div className="flex flex-1">
-              <Link href="/" className="font-semibold">npmstats</Link>
+              <Link href="/" className="flex items-center font-semibold">
+                <Image src="/icon.png" alt="" width={54} height={52} />
+                npmstats
+              </Link>
             </div>
             <Suspense>
               <GithubStarButton />
