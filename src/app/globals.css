@@ -158,9 +158,9 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground overflow-x-clip;
+    @apply bg-background text-foreground overflow-x-clip min-h-screen flex flex-col;
   }
   html {
-    @apply font-sans overflow-x-clip;
+    @apply font-sans;
   }
 }
